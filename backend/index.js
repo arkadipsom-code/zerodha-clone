@@ -13,6 +13,66 @@ app.use(express.json()); // Parses incoming JSON bodies automatically
 // Import your existing models (Matching your structure image)
 const { HoldingsModel } = require("./model/HoldingsModel");
 const { OrdersModel } = require("./model/OrdersModel");
+const { UserModel } = require("./model/UserModel");
+
+// 1. SIGNUP ROUTE: Checks if user exists, otherwise registers them
+app.post("/signup", async (req, res) => {
+  const { email, username, password } = req.body;
+
+  try {
+    // Check if a user with this email already exists in MongoDB
+    const existingUser = await UserModel.findOne({ email });
+    if (existingUser) {
+      return res
+        .status(400)
+        .json({
+          message: "User already exists with this email! Try logging in.",
+        });
+    }
+
+    // If it's a new user, save them to the database
+    const newUser = new UserModel({ email, username, password });
+    await newUser.save();
+
+    res
+      .status(201)
+      .json({ message: "Registration successful!", user: { username, email } });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Signup failed internally", error: error.message });
+  }
+});
+
+// 2. LOGIN ROUTE: Verifies credentials
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    // Find user by email
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      return res
+        .status(400)
+        .json({ message: "No account found with this email. Please sign up." });
+    }
+
+    // Verify password match
+    if (user.password !== password) {
+      return res
+        .status(400)
+        .json({ message: "Incorrect password! Please try again." });
+    }
+
+    res
+      .status(200)
+      .json({ message: "Login successful!", username: user.username });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Login failed internally", error: error.message });
+  }
+});
 
 // 1. GET ROUTE: Fetch All Holdings to show in Dashboard Table
 app.get("/allHoldings", async (req, res) => {
