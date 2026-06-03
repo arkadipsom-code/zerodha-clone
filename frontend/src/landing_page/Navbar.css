@@ -1,0 +1,57 @@
+.app-navbar {
+  min-height: 80px;
+}
+
+.app-navbar .container {
+  max-width: 1140px;
+}
+
+.app-navbar .navbar-brand img {
+  width: 110px;
+}
+
+.app-navbar .navbar-nav {
+  align-items: center;
+}
+
+.app-navbar .navbar-nav .nav-link {
+  padding: 0 1rem;
+  font-size: 0.95rem;
+  color: text-muted;
+  font-weight: 500;
+}
+
+.app-navbar .navbar-nav .nav-link:hover,
+.app-navbar .navbar-nav .nav-link:focus {
+  color: #387ed1;
+}
+
+.app-navbar .navbar-toggler {
+  border: none;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.app-navbar .custom-toggler-icon {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+}
+
+.app-navbar .custom-toggler-icon span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #232f3e;
+  border-radius: 1px;
+}
+
+.app-navbar .custom-toggler-icon span + span {
+  margin-top: 4px;
+}
