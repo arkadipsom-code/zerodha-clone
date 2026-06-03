@@ -1,16 +1,5 @@
-const mongoose = require("mongoose");
-const { Schema } = mongoose;
+const { model } = require("mongoose");
+const HoldingsSchema = require("../schemas/HoldingsSchema");
 
-const HoldingsSchema = new Schema({
-  name: String,
-  qty: Number,
-  avg: Number,
-  price: Number,
-  net: String,
-  day: String,
-});
-
-// Pay close attention to how this is named and exported!
-const HoldingsModel = mongoose.model("holding", HoldingsSchema);
-
-module.exports = { HoldingsModel };
+const HoldingsModel = model("Holding", HoldingsSchema);
+module.exports = HoldingsModel;
