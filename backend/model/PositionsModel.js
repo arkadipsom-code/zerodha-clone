@@ -3,4 +3,4 @@ const PositionsSchema = require("../schemas/PositionsSchema");
 
 const PositionsModel = model("Positions", PositionsSchema, "positions");
 
-module.exports = PositionsModel;
+module.exports = { PositionsModel };

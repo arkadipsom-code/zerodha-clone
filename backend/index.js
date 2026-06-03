@@ -23,11 +23,9 @@ app.post("/signup", async (req, res) => {
     // Check if a user with this email already exists in MongoDB
     const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
-      return res
-        .status(400)
-        .json({
-          message: "User already exists with this email! Try logging in.",
-        });
+      return res.status(400).json({
+        message: "User already exists with this email! Try logging in.",
+      });
     }
 
     // If it's a new user, save them to the database
