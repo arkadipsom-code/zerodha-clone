@@ -8,7 +8,7 @@ function Portfolio() {
 
   // 2. Fetch data from your backend server endpoint upon layout load
   useEffect(() => {
-    fetch("http://localhost:3002/allHoldings") // Replace port/route with your actual backend configuration
+    fetch("https://zerodha-clone-backend-ckkq.onrender.com/allHoldings") // Replace port/route with your actual backend configuration
       .then((res) => {
         if (!res.ok)
           throw new Error("Failed to grab your holdings from database");

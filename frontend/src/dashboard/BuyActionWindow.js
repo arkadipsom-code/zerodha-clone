@@ -28,14 +28,17 @@ function BuyActionWindow({ stock, onClose }) {
     };
 
     try {
-      const response = await fetch("http://localhost:3002/newOrder", {
-        // Replace route/port with your backend order route
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://zerodha-clone-backend-ckkq.onrender.com/newOrder",
+        {
+          // Replace route/port with your backend order route
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(orderPayload),
         },
-        body: JSON.stringify(orderPayload),
-      });
+      );
 
       if (response.ok) {
         alert(
